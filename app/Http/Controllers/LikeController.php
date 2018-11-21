@@ -3,83 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\MOdel\Like;
+use App\MOdel\Reply;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function LikeIt(Reply $reply)
     {
-        //
+        $reply->like()->create([
+            //'user_id' => auth()->id
+            'user_id' => '1'
+        ]);
+        
+        return response('Liked', Response::HTTP_CREATED);
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    
+    public function unLikeIt(Reply $reply)
     {
-        //
-    }
+        //$reply->like()->where(['user_id',auth()->id])->first()->delete();
+        $reply->like()->where('user_id','1')->first()->delete();
+        return response('Dislike', Response::HTTP_NO_CONTENT);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\MOdel\Like  $like
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Like $like)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\MOdel\Like  $like
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Like $like)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\MOdel\Like  $like
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Like $like)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\MOdel\Like  $like
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Like $like)
-    {
-        //
     }
 }
