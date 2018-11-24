@@ -54,6 +54,11 @@ class User {
     own(id){
         return this.id() == id
     }
+
+    admin(){
+        return this.id() == 25
+    }
+
 }
 
 export default User = new User();

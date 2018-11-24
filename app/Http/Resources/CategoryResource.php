@@ -17,8 +17,8 @@ class CategoryResource extends JsonResource
         //return parent::toArray($request);
         return [
             'name' => $this->name,
-            'created_at' => $this->created_at->diffForHumans(),
-            'id' => $this->id
+            'id' => $this->id,
+            'slug' => $this->slug
         ];
     }
 }
